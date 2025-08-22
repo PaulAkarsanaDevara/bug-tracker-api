@@ -1,0 +1,52 @@
+{
+  "name": "bug-tracker-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec tsx src/server.ts",
+    "start:build": "tsc",
+    "clean": "rimraf node_modules package-lock.json dist",
+    "reinstall": "npm run clean && npm install",
+    "lint": "npx eslint src --ext .ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulAkarsanaDevara/bug-tracker-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PaulAkarsanaDevara/bug-tracker-api/issues"
+  },
+  "homepage": "https://github.com/PaulAkarsanaDevara/bug-tracker-api#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "mongoose": "^8.17.2",
+    "morgan": "^1.10.1",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.33.0",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
+  }
+}

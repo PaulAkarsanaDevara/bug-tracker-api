@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import { errorHandler } from './utils/error';
+import authRoutes from './modules/auth/auth.route';
 import userRoutes from './modules/users/user.route';
 import bugRoutes from './modules/bugs/bug.route';
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/bugs', bugRoutes);
 

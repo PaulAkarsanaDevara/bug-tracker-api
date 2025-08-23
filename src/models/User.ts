@@ -6,18 +6,26 @@ const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true , select: false},
-  role: { type: String, enum: ["admin", "developer", "user"], default: "user" }
+  password: { type: String, required: true },
+  role: { type: String, enum: ["admin", "developer", "user"], default: "user" },
+  refreshToken: { type: String },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 }, { timestamps: true });
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hash(this.password, 10);
+userSchema.methods.comparePassword = async function (
+  this: IUser,
+  userPassword: string
+): Promise<boolean> {
+  return await bcrypt.compare(userPassword, this.password);
+};
+
+userSchema.pre<IUser>('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-userSchema.methods.comparePassword = async function (password: string) {
-  return bcrypt.compare(password, this.password);
-};
 
 export default mongoose.model<IUser>("User", userSchema);

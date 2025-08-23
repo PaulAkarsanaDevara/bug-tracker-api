@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import  { Document, Schema } from "mongoose";
 
 export interface IUser extends Document {
   name: string;
@@ -6,6 +6,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: "admin" | "developer" | "user";
+  history: Schema.Types.ObjectId[];
   refreshToken?: string | null;
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;

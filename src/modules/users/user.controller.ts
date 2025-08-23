@@ -7,8 +7,14 @@ export class UserController {
   constructor(@inject("UserService") private userService: UserService) {}
 
   async getUsers(req: Request, res: Response) {
+    const { page, limit, search , role} = req.query;
     try {
-      const data = await this.userService.findAll();
+      const data = await this.userService.findAll(
+        Number(page) || 1,
+        Number(limit) || 10,
+        search as string,
+        role as string
+      );
       res.json({ status: "OK", message: "Get All Users", data })
       
     } catch (err: any) {

@@ -8,6 +8,7 @@ const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: { type: String, enum: ["admin", "developer", "user"], default: "user" },
+  history: [{ type: Schema.Types.ObjectId, ref: "Bug" ,  default: []}],
   refreshToken: { type: String },
   resetPasswordToken: String,
   resetPasswordExpires: Date
@@ -26,6 +27,7 @@ userSchema.pre<IUser>('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
 
 
 export default mongoose.model<IUser>("User", userSchema);

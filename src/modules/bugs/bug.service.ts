@@ -1,7 +1,6 @@
 import { injectable } from "tsyringe";
 import { IBug } from "../../interfaces/bug.interface";
 import Bug from "../../models/Bug";
-
 @injectable()
 export class BugService {
 
@@ -57,12 +56,11 @@ export class BugService {
     const bug = new Bug({ title, description, priority, status, createdBy, assignedTo, label });
 
     await bug.save();
-
+    
     await bug.populate([
       { path: "createdBy", select: "name -_id" },
       { path: "assignedTo", select: "name -_id" },
     ]);
-
 
     return bug;
   }

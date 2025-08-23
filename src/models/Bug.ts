@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { IAttachment, IBug } from "../interfaces/bug.interface";
+import User from "./User";
 
 const AttachmentSchema = new Schema<IAttachment>(
   {
@@ -28,5 +29,17 @@ const bugSchema = new Schema<IBug>({
     }
   ]
 }, { timestamps: true });
+
+
+// Middleware setelah bug dibuat → push bugId ke User.bugs
+bugSchema.post("save", async function (doc) {
+  if(doc.assignedTo) {
+   await User.findByIdAndUpdate(doc.assignedTo, {
+        $addToSet: { history: doc._id } 
+      })
+  }
+  await User.findByIdAndUpdate(doc.createdBy, { $push: { history: doc._id } });
+});
+
 
 export default mongoose.model<IBug>("Bug", bugSchema);

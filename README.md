@@ -38,3 +38,37 @@ Dibangun dengan **Express.js**, **TypeScript**, dan **MongoDB**, API ini menduku
 ```bash
 git clone https://github.com/username/bug-tracker-api.git
 cd bug-tracker-api
+```
+
+### 2. Install Dependencies
+```bash
+npm install 
+```
+
+### 3. Setup Environment
+Buat file .env di root project:
+```bash
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/bugtracker
+JWT_SECRET=rahasia
+```
+
+### 4. Jalankan Server
+```bash
+npm run start:dev
+```
+
+---
+## 📌 Endpoint API
+
+### Auth
+```bash 
+  POST /api/auth/register
+```
+```bash 
+  POST /api/auth/login
+```
+```bash 
+  POST /api/auth/logout
+```
+

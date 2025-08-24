@@ -29,3 +29,12 @@ Dibangun dengan **Express.js**, **TypeScript**, dan **MongoDB**, API ini menduku
 - [JWT](https://jwt.io/) untuk autentikasi  
 - [Multer](https://github.com/expressjs/multer) untuk upload attachment  
 
+
+---
+
+## ⚙️ Instalasi
+
+### 1. Clone Repo
+```bash
+git clone https://github.com/username/bug-tracker-api.git
+cd bug-tracker-api

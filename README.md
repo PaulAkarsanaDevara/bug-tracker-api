@@ -58,20 +58,3 @@ JWT_SECRET=rahasia
 npm run start:dev
 ```
 
----
-## 📌 Endpoint API
-
-### Auth
-API untuk Register user
-```bash 
-  POST /api/auth/register
-```
-API untuk login user
-```bash 
-  POST /api/auth/login
-```
-API untuk logout user
-```bash 
-  POST /api/auth/logout
-```
-
